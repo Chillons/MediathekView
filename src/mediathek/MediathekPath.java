@@ -126,6 +126,13 @@ public class MediathekPath {
                             datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR] = datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR].replace(pathFrom, pathTo);
                             Log.systemMeldung("Programmpfad nach: " + datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR]);
                         }
+                        // Programmschalter prüfen
+                        if (datenProg.arr[DatenProg.PROGRAMM_SCHALTER_NR].contains(pathFrom)) {
+                            ++changed;
+                            Log.systemMeldung("Programmschalter von: " + datenProg.arr[DatenProg.PROGRAMM_SCHALTER_NR]);
+                            datenProg.arr[DatenProg.PROGRAMM_SCHALTER_NR] = datenProg.arr[DatenProg.PROGRAMM_SCHALTER_NR].replace(pathFrom, pathTo);
+                            Log.systemMeldung("Programmschalter nach: " + datenProg.arr[DatenProg.PROGRAMM_SCHALTER_NR]);
+                        }
                     }
                     Log.systemMeldung("");
                 }

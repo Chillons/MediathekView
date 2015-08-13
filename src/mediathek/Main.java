@@ -122,10 +122,10 @@ public class Main {
                     case "-d":
                         Daten.debug = true;
                         break;
-
-                    case "-delset":
-                        Daten.delSets = true;
-                        break;
+// brauchts dann nicht mehr
+//                    case "-delset":
+//                        Daten.delSets = true;
+//                        break;
 
                     case "-m":
                         Daten.startMaximized = true;
