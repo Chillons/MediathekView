@@ -21,26 +21,27 @@ package mediathek;
 
 import com.jidesoft.utils.SystemInfo;
 import com.jidesoft.utils.ThreadCheckingRepaintManager;
-import mediathek.controller.Log;
-import mediathek.daten.Daten;
-import mediathek.mac.MediathekGuiMac;
-import mediathek.tool.Konstanten;
-import mediathek.tool.MVSingleInstance;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.EventQueue;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.JOptionPane;
+import javax.swing.RepaintManager;
+import mediathek.controller.Log;
+import mediathek.daten.Daten;
+import mediathek.mac.MediathekGuiMac;
+import mediathek.tool.Konstanten;
+import mediathek.tool.MVSingleInstance;
 
 public class Main {
 
     public enum StartupMode {
 
-        GUI, AUTO, FASTAUTO
+        GUI, AUTO, FASTAUTO, PATH
     }
 
     /**
@@ -109,6 +110,10 @@ public class Main {
                         state = StartupMode.FASTAUTO;
                         break;
 
+                    case "-path":
+                        state = StartupMode.PATH;
+                        break;
+
                     case "-v":
                         Log.versionsMeldungen();
                         System.exit(0);
@@ -149,6 +154,11 @@ public class Main {
                 final MediathekAuto mvAuto = new MediathekAuto(args);
                 mvAuto.setFastAuto(true);
                 mvAuto.starten();
+                break;
+
+            case PATH:
+                final MediathekPath mvPath = new MediathekPath(args);
+                mvPath.starten();
                 break;
 
             case GUI:
