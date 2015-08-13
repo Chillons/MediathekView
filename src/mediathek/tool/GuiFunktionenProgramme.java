@@ -34,7 +34,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import mediathek.controller.Log;
 import mediathek.controller.starter.RuntimeExec;
 import mediathek.daten.Daten;
 import mediathek.daten.DatenProg;

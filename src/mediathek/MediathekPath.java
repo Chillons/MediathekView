@@ -105,6 +105,7 @@ public class MediathekPath {
 
     private synchronized boolean changePath() {
         boolean ret = false;
+        int changed = 0;
         try {
             Iterator<DatenPset> itPset = Daten.listePset.iterator();
             DatenPset datenPset;
@@ -120,6 +121,7 @@ public class MediathekPath {
                         datenProg = itProg.next();
                         // Programmpfad prüfen
                         if (datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR].contains(pathFrom)) {
+                            ++changed;
                             Log.systemMeldung("Programmpfad von: " + datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR]);
                             datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR] = datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR].replace(pathFrom, pathTo);
                             Log.systemMeldung("Programmpfad nach: " + datenProg.arr[DatenProg.PROGRAMM_PROGRAMMPFAD_NR]);
@@ -128,6 +130,15 @@ public class MediathekPath {
                     Log.systemMeldung("");
                 }
             }
+            Log.systemMeldung("");
+            Log.systemMeldung("=============================================");
+            if (changed > 0) {
+                Log.systemMeldung(changed + " Programmpfade wurden getauscht.");
+            } else {
+                Log.systemMeldung("Keine Programmpfade wurden getauscht.");
+            }
+            Log.systemMeldung("=============================================");
+
             ret = true;
         } catch (Exception ex) {
             Log.fehlerMeldung(901201458, ex);
